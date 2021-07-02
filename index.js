@@ -35,6 +35,11 @@ class Component {
     ctx.fillStyle = this.color
     ctx.fillRect(this.x, this.y, this.width, this.height)
   }
+
+  newPos() {
+    this.x += this.speedX
+    this.y += this.speedY
+  }
 }
 
 /* 
@@ -42,6 +47,7 @@ class Component {
 */
 const updateGameArea = () => {
   myGameArea.clear()
+  player.newPos()
   player.update()
 }
 
@@ -51,3 +57,29 @@ myGameArea.start()
 /* 
     EVENTOS
 */
+
+document.addEventListener("keydown", (e) => {
+  switch (e.keyCode) {
+    case 37:
+      player.speedX--
+      break
+    case 39:
+      player.speedX++
+      break
+    case 38:
+      player.speedY--
+      break
+    case 40:
+      player.speedY++
+      break
+    default:
+      return
+  }
+})
+
+document.addEventListener("keyup", () => {
+  player.speedX = 0
+  player.speedY = 0
+
+  console.log("freno", player)
+})

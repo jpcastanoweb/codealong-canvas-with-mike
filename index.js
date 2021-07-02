@@ -87,8 +87,17 @@ function updateObstacles() {
 
   if (myGameArea.frames % 120 === 0) {
     let canvasWidth = myGameArea.canvas.width
-    let height = 100
-    let gap = 80
+
+    let minHeight = 20
+    let maxHeight = 200
+    let minGap = 50
+    let maxGap = 180
+
+    let height = Math.floor(
+      Math.random() * (maxHeight - minHeight + 1) + minHeight
+    )
+    let gap = Math.floor(Math.random() * (maxGap - minGap + 1) + minGap)
+
     myObstacles.push(new Component(10, height, "green", canvasWidth, 0))
     myObstacles.push(
       new Component(
